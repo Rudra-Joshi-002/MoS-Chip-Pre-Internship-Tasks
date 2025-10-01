@@ -1,0 +1,18 @@
+Exercise 1-11. How would you test the word count program? What kinds of input are most
+likely to uncover bugs if there are any?
+
+Ans:
+
+Typically words for humans means a combination of alphabets where as the definition of
+word given by the program is a collection of alphanumeric as well special symbol characters
+that are seprated from each other via "\n" or " " or "\t" hence as long as human interpreta
+tion of the word is considered the program contains bugs because it can identify only based
+on the above mentioned definition of word and hence for program the following examples are
+also words
+
+123->word
+1abc->word
+...///$$%^->word
+
+hence above collection of characters cannot be considered as words for us and hence program
+may seem buggy in this aspect because of its definition
