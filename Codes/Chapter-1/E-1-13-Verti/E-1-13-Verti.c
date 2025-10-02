@@ -1,5 +1,5 @@
-//Exercise 1-14. Write a program to print a histogram of the frequencies of different characters
-//in its input.
+//Exercise 1-13. Write a program to print a histogram of the lengths of words in its input. It is
+//easy to draw the histogram with the bars horizontal; a vertical orientation is more challenging.
 
 #include<stdio.h>
 
@@ -30,34 +30,40 @@ void main()
         }
 
         else
-            word_len[i]++; //if neither blank or start of new word then just increment word_len at given
+            word_len[i]++; //if neither blank nor start of new word then just increment word_len at given
                            //index
 
     }
     
     //the following is the code for a horizontal histogram
 
-    printf("\nNow Printing Info in form of Histogram...\n");
-
-    for(int i=nw; i>0; i--)
+    printf("\nNow Printing Info in form of Vertical Histogram...\n");
+    printf("Y-Axis (Word Length)\n");
+    for(int i=20 ; i>0 ; i--) //Logical length of any word hope so atleast :)
     {
-        printf("Word: %d | ",i);
+        printf("%d: ",i);
 
-        for(int j=0; j<word_len[i-1]; j++)
+        for(int j=0; j<nw ; j++)
         {
-            printf(" * "); //Histogram Bar Element
+            if(i<=word_len[j]) //if for a given word length tarnseverse array and if value at the
+                               //element in array is less than or equal to len no. i then print element
+                printf(" * "); //else print blank this way whole graph is generated with spaces as chars
+            else
+                printf("   ");
+
         }
 
-        putchar('\n');
+        printf("\n"); //skip to next line after one row is over
+
     }
+    
+    printf("0: ");
 
-    printf("Length: | "); //for printing the word length axis
-
-    for(int i=1;i<=20;i++) //i=20 is a logical limit of word length of any word or atleast I hope that :)
-    {
+    for(int i=1;i<=nw;i++)
         printf(" %d ",i);
-    }
 
+    printf(" X-Axis (Number of Words)\n");
+    
     printf("\nEOF Encountered Terminating Program Now...\n");
 
 }
