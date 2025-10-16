@@ -1,5 +1,5 @@
-//Exercise 1-23. Write a program to remove all comments from a C program. Don't forget to
-//handle quoted strings and character constants properly. C comments don't nest.
+
+
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -9,12 +9,12 @@ typedef enum{
   IN_BLOCK_COMMENT,
   IN_STRING,
   IN_CHARCTER,
-}State; //to describe state of line being read
+}State; 
 
 int main(int argc, char *argv[])
 {
 
-    FILE *fp_ip, *fp_op; //define file pointers for input and output
+    FILE *fp_ip, *fp_op; 
     int c,next_char;
     State state=NORMAL;
 
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    //try to open input file with comments in read mode
+    
     
     fp_ip= fopen(argv[1],"r");
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    //try to open output file with write mode
+    
     
     fp_op=fopen(argv[2],"w");
 
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
     while((c=fgetc(fp_ip))!=EOF)
     {
-        //check the state of reading
+        
 
         if(state==NORMAL)
         {   
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
             {   
                printf("\n/ encountered\n");
 
-               //fetch the next char
+               
                
                next_char=fgetc(fp_ip);
                
@@ -73,16 +73,16 @@ int main(int argc, char *argv[])
                    printf("\nState=In Block Comment\n");
                }
 
-               else //if its neither part of block or inline comment then treat it as plain text
+               else 
                {    
-                    printf("\nIt was a simple /\n"); //simply put c and next char into o/p file
+                    printf("\nIt was a simple /\n"); 
                     fputc(c,fp_op);
                     ungetc(next_char,fp_ip);
                }
 
 
             }
-            //if " character appears then
+            
             else if(c=='"')
             {
                 printf("\nDouble Quotes Encountered Changing State\n");
