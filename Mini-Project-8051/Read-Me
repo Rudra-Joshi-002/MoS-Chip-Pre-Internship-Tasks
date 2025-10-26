@@ -1,0 +1,11 @@
+This Folder Contains Codes and Proof of Simulation Results of
+8051 Based Mini Projects Written In assembly Language
+
+whose problem statement were as follows: 
+
+Use 8051 micro-controller family. Programming should be done in Assembly or C language (Keil).
+1. Interface Switch and LEDs with any micro-controller. Update LED pattern according to switch positions.
+2. Interface push button. Toggle LED when button is pressed. Use interrupt method to detect push button event (do not poll button value).
+
+In my simulation the 8051 selected by me was AT89C51
+ 
