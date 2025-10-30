@@ -1,0 +1,139 @@
+/*
+
+Exercise 5-8. There is no error checking in day_of_year or month_day. Remedy this defect.
+
+*/
+
+#include<stdio.h>
+
+static char daytab[2][13] = {
+    {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
+    {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
+};
+
+int day_of_year(int ,int ,int );
+
+void month_day(int , int , int *, int *);
+
+int main()
+{
+    int year,month,day,month_of_year,day_of_month;
+
+    printf("Enter a Date in DD\\MM\\YYYY format:\n");
+    scanf("%d %d %d",&day,&month,&year);
+
+    printf("\nEntered Date is %d\\%d\\%d\n",day,month,year);
+
+    printf("\nConverting the Entered Date into Day of Year...\n");
+    
+    int ans=day_of_year(year,month,day);
+
+    printf("\nThe Entered Date corresponds to %d Day of that year",ans);
+
+    printf("\nEnter a Year:\n");
+    scanf("%d",&year);
+
+    printf("\nEnter a day of that year:\n");
+    scanf("%d",&day);
+
+    printf("\nEntered Year: %d and Day of That Year: %d\n",year,day);
+
+    printf("\nThe Month and Day of That Year that Year and Day of Year Corresponds to are:\n");
+
+    month_day(year,day,&month_of_year,&day_of_month);
+
+    printf("\nMonth: %d, Day: %d\n",month_of_year,day_of_month);
+
+    return 0;
+
+}
+
+int day_of_year(int year,int month,int day)
+{
+    int i,leap;
+    
+    leap = ((year%4==0) && (year%100!=0) || (year%400==0)) ; //condition to check for leap year
+
+    if(leap)
+    {
+        if(month>0 && month<13)
+        {
+            if(day<=daytab[leap][month+1]);
+            
+            else
+            {
+               printf("\nEntered Day: %d Invalid for Month: %d\n",day,month);
+               return -1;
+            }    
+        }
+        
+        else
+        {
+          printf("\nEntered Month:%d is Invalid\n",month);
+          return -1;
+        }  
+    }
+
+    else
+    {
+        if(month>0 && month<13)
+        {
+            if(day<=daytab[leap][month+1]);
+            
+            else
+            {
+               printf("\nEntered Day: %d Invalid for Month: %d\n",day,month);
+               return -1;
+            }    
+        }
+        
+        else
+        {
+          printf("\nEntered Month:%d is Invalid\n",month);
+          return -1;
+        } 
+    }
+
+    for(i=1 ; i<month ; i++)
+        day+=daytab[leap][i];
+
+    return day;
+
+}
+
+void month_day(int year , int year_day , int *pmonth , int *pday)
+{
+    int i,leap;
+
+    leap = ((year%4==0) && (year%100!=0) || (year%400==0)) ; //condition to check for leap year
+    
+    if(leap)
+    {
+        if(year_day>0 && year_day<367);
+
+        else{
+            printf("\nInvalid Day of Year Entered: %d\n",year_day);
+            return;
+        }
+
+    }
+    
+    else
+    {
+        if(year_day>0 && year_day<366);
+
+        else
+        {
+            printf("\nInvalid Day of Year Entered: %d\n",year_day);
+            return;
+        }
+
+    }
+
+    for(i=1 ; year_day>daytab[leap][i] ; i++)
+        year_day-=daytab[leap][i];
+
+    *pmonth=i;
+    *pday=year_day;
+
+}
