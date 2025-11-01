@@ -22,14 +22,14 @@ int readlines(char *lineptr[], int maxlines, char *storage ,int storage_size)
    {
         if(nlines>=maxlines) return-1; //if no of lines is greater than -1 then break
         
-        if(bufp+len > bufend) return -1; //if the storage is full then break
+        if(bufp + len + 1 > bufend) return -1; //if the storage is full then break
 
         strcpy(bufp,line); //if none of above condition is true then store then copy the line form start of bufp
         
         lineptr[nlines++]=bufp; //pass the pointer to the input string in storage to one of elements of lineptr
         
-        bufp +=(len+1); //increase the bufp to point to next free location in storage
-        //len+1 beacuse the len returned by getLine is 0 indexed hence to point to appropriate next free location in storage 
+        //len+1 to include null char and point new poisition
+        bufp +=(len+1);
    }
 
  return nlines; //at the end of reading return total lines read to the calling function 
@@ -50,6 +50,7 @@ int getLine(char *s, int lim)
     
     *s  = '\0';
 
-    return i; //i.e. length of string including '\0' char
+    //This returns the length *excluding* the '\0' char
+    return i; 
     
 }

@@ -22,7 +22,7 @@ int readlines(char *lineptr[], int maxlines, char *storage ,int storage_size)
    {
         if(nlines>=maxlines) return-1; //if no of lines is greater than -1 then break
         
-        if(*bufp+len > *bufend) return -1; //if the storage is full then break
+        if(bufp+len > bufend) return -1; //if the storage is full then break
 
         strcpy(bufp,line); //if none of above condition is true then store then copy the line form start of bufp
         
